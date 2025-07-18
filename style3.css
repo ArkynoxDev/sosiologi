@@ -1,0 +1,181 @@
+/* Reset dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background:
+      url('https://www.transparenttextures.com/patterns/stardust.png'),
+      radial-gradient(circle at top left, #0f2923, #121b17 90%);
+    color: #d0fff7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+    overflow-x: hidden;
+  }
+  
+  h1 {
+    color: #39ff14;
+    text-shadow: 0 0 10px #39ff14aa;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    font-size: 2.5rem;
+  }
+  
+  /* Grid container untuk nomor soal */
+  .question-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 1rem;
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  /* Kotak nomor soal */
+  .question-number {
+    background: transparent;
+    border: 2.5px solid #39ff14;
+    border-radius: 8px;
+    color: #39ff14;
+    font-weight: 700;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    user-select: none;
+    box-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .question-number:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #7fff72, 0 0 40px #7fff72;
+    color: #7fff72;
+    border-color: #7fff72;
+  }
+  
+  /* Popup overlay */
+  .popup-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+  
+  .popup-overlay.active {
+    display: flex;
+    animation: fadeIn 0.3s ease forwards;
+  }
+  
+  /* Popup content */
+  .popup-content {
+    background: #121822;
+    color: #d0fff7;
+    padding: 2rem 2.5rem;
+    border-radius: 16px;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 0 30px #39ff14aa;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.5;
+    user-select: text;
+  }
+  
+  .popup-content h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #39ff14;
+    text-shadow: 0 0 10px #39ff14cc;
+  }
+  
+  .popup-content p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #b4f7cc;
+  }
+  
+  /* Close button */
+  .close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    color: #7fff72;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    user-select: none;
+    filter: drop-shadow(0 0 4px #39ff14cc);
+  }
+  
+  .close-btn:hover {
+    color: #a3ff97;
+    filter: drop-shadow(0 0 10px #7fff72);
+    transform: scale(1.1);
+  }
+  
+  /* Scrollbar custom */
+  .popup-content::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .popup-content::-webkit-scrollbar-track {
+    background: #0b1310;
+    border-radius: 8px;
+  }
+  
+  .popup-content::-webkit-scrollbar-thumb {
+    background: #39ff14aa;
+    border-radius: 8px;
+    box-shadow: inset 0 0 4px #39ff14cc;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  /* Responsive */
+  @media (max-width: 480px) {
+    .question-number {
+      height: 48px;
+      font-size: 1.3rem;
+    }
+    .popup-content {
+      padding: 1.5rem 2rem;
+      max-width: 90vw;
+      max-height: 75vh;
+      font-size: 1rem;
+    }
+    .popup-content h2 {
+      font-size: 1.4rem;
+    }
+    .close-btn {
+      font-size: 1.4rem;
+      top: 0.8rem;
+      right: 0.8rem;
+    }
+  }
+  

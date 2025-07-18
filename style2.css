@@ -1,0 +1,482 @@
+/* Reset dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  
+/* Animasi stroke logo */
+#outer-shape, #inner-shape {
+  stroke-dasharray: 280; 
+  stroke-dashoffset: 280;
+  animation: drawErase 4s linear infinite;
+}
+
+@keyframes drawErase {
+  0% {
+    stroke-dashoffset: 280;
+    opacity: 1;
+  }
+  50% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -280;
+    opacity: 0;
+  }
+}
+
+  html, body {
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    background:
+      url('https://www.transparenttextures.com/patterns/stardust.png'),
+      radial-gradient(circle at top left, #0f2923, #121b17 90%);
+    color: #d0fff7;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+  
+    /* scrollbar hidden */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  body::-webkit-scrollbar {
+    display: none;
+  }
+  #lanjut-btn {
+    border-radius: 30px;
+    padding: 0.6rem 1.2rem;
+    box-shadow: 0 0 6px #39ff14aa;
+    transition: filter 0.3s ease;
+  }
+  
+  #lanjut-btn:hover {
+    filter: drop-shadow(0 0 15px #39ff14ee);
+    color: #7fff72;
+    box-shadow: 0 0 12px #7fff72ee;
+    cursor: pointer;
+    text-decoration: none;
+    animation: liquidPulse 0.5s ease-in-out infinite;
+  }
+  .next-button {
+    background-color: #39ff14;
+    color: black;
+    padding: 0.7rem 1.6rem;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    box-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: pulse-glow 1.5s infinite;
+  
+    display: inline-block;  
+    margin-top: 2rem;       
+    position: relative;     
+    z-index: 1;             
+  }
+  
+  /* Saat content hilang (fade-out) */
+.content-box.fade-out {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+  .next-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #39ff14, 0 0 40px #39ff14;
+  }
+  
+  @keyframes pulse-glow {
+    0% {
+      box-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
+    }
+    50% {
+      box-shadow: 0 0 20px #39ff14, 0 0 40px #39ff14;
+    }
+    100% {
+      box-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
+    }
+  }
+  
+  /* Logo SVG */
+  .logo-svg {
+    margin: 2rem auto 3rem auto;
+    display: block;
+    max-width: 90vw;
+    height: auto;
+    filter: drop-shadow(0 0 6px #70e1bf88);
+  }
+  
+  /* Container utama */
+  .content-container {
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
+    padding: 0 1rem;
+    position: relative;
+  }
+  
+  /* Section konten - default sembunyi */
+  .content-box {
+    background: rgba(30, 60, 50, 0.15);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(10, 40, 30, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1.5px solid #70e1bf88;
+    padding: 1.8rem 2rem;
+    margin-bottom: 2.5rem;
+  
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    cursor: default;
+  
+    display: none; /* default sembunyi */
+  }
+  
+  /* Section aktif tampil */
+  .content-box.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Judul */
+  .content-box h1,
+  .content-box h2 {
+    color: #a0ffdc;
+    text-shadow: 0 0 6px #70e1bf;
+    margin-bottom: 1rem;
+  }
+  
+  /* Paragraf */
+  .content-box p {
+    color: #c8fff7;
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+  
+  /* Gambar */
+  .cute-gap {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .cute-gap img {
+    width: 90%;
+    max-width: 600px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(112, 225, 191, 0.5);
+    user-select: none;
+  }
+  .popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(18, 18, 26, 0.95);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    z-index: 9999;
+  }
+  
+  .popup-content {
+    background: #2a2b38;
+    color: #fff;
+    padding: 2rem;
+    border-radius: 16px;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 0 20px #39ff14;
+    animation: fadeIn 0.3s ease;
+  }
+/* Overlay gelap */
+.popup-overlay {
+  display: none; /* default sembunyi */
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7); /* gelap transparan */
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  overflow-y: auto;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.popup-overlay.active,
+.popup-overlay[style*="flex"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Konten popup */
+.popup-content {
+  background: #121822; /* warna gelap elegan */
+  color: #e0f7f1;
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  max-width: 680px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 255, 50, 0.3);
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.5;
+  user-select: text;
+  animation: popupFadeIn 0.35s ease forwards;
+}
+
+/* Judul popup */
+.popup-content h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #39ff14;
+  text-shadow: 0 0 8px #39ff14cc;
+}
+
+/* Paragraf dan list */
+.popup-content p,
+.popup-content ul {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #b4f7cc;
+}
+
+.popup-content ul {
+  padding-left: 1.4rem;
+}
+
+/* Tombol close */
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  color: #7fff72;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  user-select: none;
+  filter: drop-shadow(0 0 4px #39ff14cc);
+}
+
+.close-btn:hover {
+  color: #a3ff97;
+  filter: drop-shadow(0 0 10px #7fff72);
+  transform: scale(1.1);
+}
+
+/* Scrollbar custom */
+.popup-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.popup-content::-webkit-scrollbar-track {
+  background: #0b1310;
+  border-radius: 8px;
+}
+
+.popup-content::-webkit-scrollbar-thumb {
+  background: #39ff14aa;
+  border-radius: 8px;
+  box-shadow: inset 0 0 4px #39ff14cc;
+}
+
+/* Animasi fade in popup */
+@keyframes popupFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 600px) {
+  .popup-content {
+    padding: 1.2rem 1.5rem;
+    max-width: 95vw;
+    max-height: 90vh;
+    font-size: 0.95rem;
+  }
+
+  .popup-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .close-btn {
+    font-size: 1.4rem;
+    top: 0.8rem;
+    right: 0.8rem;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsive for small devices */
+@media (max-width: 600px) {
+  .popup-content {
+    padding: 1.2rem;
+    font-size: 0.95rem;
+  }
+}
+
+  .popup-content h2 {
+    margin-bottom: 1rem;
+    color: #39ff14;
+  }
+  
+  .popup-content ul {
+    padding-left: 1.2rem;
+    margin-top: 0.5rem;
+  }
+  
+  .close-popup {
+    margin-top: 1.5rem;
+    background-color: #39ff14;
+    color: #000;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .close-popup:hover {
+    background-color: #7fff72;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Navigasi tombol panah */
+  .navigation-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 4rem;
+  }
+  
+  .nav-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.6rem 1rem;
+    border-radius: 30px;
+    position: relative;
+    width: 60px;
+    height: 60px;
+    filter: drop-shadow(0 0 6px #39ff14aa);
+    transition: filter 0.3s ease;
+  }
+  
+  .nav-btn:hover {
+    filter: drop-shadow(0 0 15px #39ff14ee);
+  }
+  
+/* Style dasar tombol kotak liquid */
+.liquid-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 40px;
+    background: transparent;
+    border: 2.5px solid #39ff14;
+    border-radius: 8px; /* kotak agak membulat */
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    position: relative;
+    overflow: visible;
+    padding: 0;
+  }
+  
+  .liquid-btn svg {
+    stroke: #39ff14;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke 0.3s ease;
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
+  }
+  
+  .liquid-btn:hover {
+    border-color: #7fff72;
+  }
+  
+  .liquid-btn:hover svg {
+    stroke: #7fff72;
+    filter: drop-shadow(0 0 10px #7fff72);
+  }
+  
+  /* Animasi morph liquid effect */
+  @keyframes liquidPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15) rotate(5deg); }
+  }
+  
+  .liquid-btn:hover {
+    animation: liquidPulse 0.5s ease-in-out infinite;
+  }
+  
+  /* Animasi morph liquid effect */
+  @keyframes liquidPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15) rotate(5deg); }
+  }
+  
+  .nav-btn:hover {
+    animation: liquidPulse 0.5s ease-in-out infinite;
+  }
+  
+  /* Responsif untuk HP */
+  @media screen and (max-width: 480px) {
+    .nav-btn {
+      width: 48px;
+      height: 48px;
+    }
+    .navigation-buttons {
+      gap: 1.5rem;
+    }
+    .content-container {
+      padding: 0 0.5rem;
+    }
+  }
+  
